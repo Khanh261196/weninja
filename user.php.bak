@@ -1,0 +1,50 @@
+<?php
+$_title = "Thông tin tài khoản !";
+include_once 'head.php';
+if($_login == null) {header("location:/login.php");}
+$_active = isset($_active) ? $_active : null;
+?>
+<main class="flex-grow-1 flex-shrink-1">
+	<div class="bg-light">
+		<div class="container">
+			<ol class="breadcrumb bg-transparent rounded-0">
+				<li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+				<li class="breadcrumb-item active">Thông tin tài khoản</li>
+			</ol>
+		</div>
+	</div>
+	<div class="container">
+		<?php echo $_active; ?>
+		<?php
+		if($_status == "wait") {
+			echo '<div class="alert alert-warning">Để có thể đăng nhập vào game, bạn cần phải <a href="/active.php">kích hoạt tài khoản</a> (Phí: 10000 coin / 10000 coin = 10000 vnd).</div>';
+		}
+		elseif($_status == "block") {
+			echo '<div class="alert alert-warning">Tài khoản đang bị khóa,để mở lại bạn cần phải <a href="/active.php">Mở khóa tài khoản</a> (Phí: 10000 coin / 10000 coin = 10000 vnd).</div>';
+		}
+		?>
+		<ul class="list-group mb-3">
+			<li class="list-group-item d-flex">
+				<div class="w-50">Tài khoản:</div>
+				<div class="w-50"><?php echo $_username; ?></div>
+			</li>
+			<li class="list-group-item d-flex">
+				<div class="w-50">Tình trạng:</div>
+				<div class="w-50"><?php echo $_status_name; ?></div>
+			</li>
+			<li class="list-group-item d-flex">
+				<div class="w-50">Số dư:</div>
+				<div class="w-50"><?php echo $_coin; ?> coin</div>
+			</li>
+			</ul>
+		<div class="text-center">
+			<a href="/repass.php" class="btn btn-sm btn-primary mb-1">Đổi mật khẩu</a>
+			<a href="/topup.php" class="btn btn-sm btn-primary mb-1">Nạp coin</a>
+			<a href="/exchange.php" class="btn btn-sm btn-primary mb-1">Đổi coin</a>
+		</div>
+	</div>
+</main>
+
+<?php
+include_once 'end.php';
+?>
